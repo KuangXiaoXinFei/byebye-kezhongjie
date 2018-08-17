@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.webapi.dao.CarInfoMapper">
+    <select id="getStyleList" parameterType="com.cloudyoung.baic.webapi.model.CarInfoExample"
+            resultType="com.cloudyoung.baic.webapi.vo.StyleVo">
+    SELECT
+        style_id AS carId,
+        style_name AS styleName,
+        brand_id AS brandId,
+        brand_name AS brandName,
+        serial_id AS serialId,
+        serial_name AS serialName,
+	    CONCAT(refer_price,'万') AS referPrice,
+        year,
+        whitecover_image AS whitecoverImage,
+        clarity_image AS clarityImage,
+        CONCAT( brand_name, ' ', serial_name, ' ', style_name ) AS carInfo
+    FROM
+        car_info
+    GROUP BY
+        style_id
+    ORDER BY style_id ASC
+    </select>
+</mapper>

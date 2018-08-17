@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.webapi.dao.PublicPushMapper">
+    <resultMap id="PublicPushMap" type="com.cloudyoung.baic.webapi.vo.PushListVo">
+        <result column="push_content" jdbcType="VARCHAR" property="content"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <select id="getPublicPushList" parameterType="map" resultMap="PublicPushMap">
+        select push_content,create_time
+        from public_push
+        where is_active = 1 and push_status = 1
+        <if test="createTime != null and createTime !=''">
+            and create_time &lt;= #{createTime}
+        </if>
+        order by create_time desc
+        <if test="pageSize != null">
+            limit #{pageSize}
+        </if>
+    </select>
+</mapper>

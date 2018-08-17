@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF" name="qq-car-service" packages="">
+    <properties>
+        <property name="patternLayout">%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</property>
+        <property name="filePath">/target/log</property>
+        <property name="allFilePath">${filePath}/alllogs</property>
+        <property name="apiFilePath">${filePath}/apilogs</property>
+        <property name="serviceFilePath">${filePath}/servicelogs</property>
+        <property name="daoFilePath">${filePath}/daologs</property>
+    </properties>
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${patternLayout}"/>
+        </Console>
+
+        <RollingRandomAccessFile name="allLog" fileName="${allFilePath}/all.log"
+                                 filePattern="${allFilePath}/all-%d{yyyy-MM-dd}.log"
+                                 immediateFlush="true" append="true">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="apiLog" fileName="${apiFilePath}/api.log"
+                                 filePattern="${allFilePath}/api-%d{yyyy-MM-dd}.log"
+                                 immediateFlush="true" append="true">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="serviceLog" fileName="${serviceFilePath}/service.log"
+                                 filePattern="${allFilePath}/service-%d{yyyy-MM-dd}.log"
+                                 immediateFlush="true" append="true">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="daoLog" fileName="${daoFilePath}/dao.log"
+                                 filePattern="${allFilePath}/dao-%d{yyyy-MM-dd}.log"
+                                 immediateFlush="true" append="true">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="allLog"/>
+        </Root>
+    </Loggers>
+</Configuration>

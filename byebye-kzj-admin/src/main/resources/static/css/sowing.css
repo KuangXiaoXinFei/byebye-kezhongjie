@@ -1,0 +1,109 @@
+tr td:nth-child(4) img {
+  width: 50px;
+  height: 50px;
+}
+
+.cropper-modal {
+  background: #333;
+}
+
+.modal-box {
+  width: 620px !important;
+  padding-top: 5%;
+}
+
+.tailoring_margin {
+  margin: 15px 0;
+  padding: 0 115px;
+}
+
+.tailoring_area {
+  width: 343px;
+  height: 343px;
+  background: #333333;
+  padding: 0 25px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+}
+
+.tailoring_area img {
+  width: 100%;
+}
+
+.tailoring_files {
+  margin-left: 40px;
+}
+
+.jcrop-holder {
+  background-color: none !important;
+}
+
+.center {
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.rota {
+  display: inline-block;
+  width: 27px;
+  height: 29px;
+  background: url(../images/rota.png) no-repeat;
+  background-size: 100% 100%;
+  float: left;
+  margin-left: 23%;
+  margin-top: -10px;
+}
+
+.rota_text  {
+    font-size:  14px;
+    color:  #BEBEBE;
+    text-align:  center;
+    margin-top:  13px;
+    margin-bottom:  38px;
+}
+#element_id{
+    width:  422px;
+    height:  150px;
+    background-size:  422px  150px;
+}
+.files{
+    width: 422px!important;
+    height: 150px!important;
+    margin-top: 35px!important;
+    background: url(../images/imgBg.jpg)!important;
+    background-size: 422px 150px!important;
+}
+.files:hover{
+    width: 422px!important;
+    height: 150px!important;
+    background: url(../images/imgBgHover.png)!important;
+    background-size: 422px 150px!important;
+}
+.files  input{
+    width:  100%;
+    height:  100%;
+}
+.imgUp{
+    width:  422px;
+    height:  150px;
+    position:  absolute;
+    top:  0;
+    left:  0;
+}
+.imgUp  img{
+    width:  100%;
+    height:  100%;
+}
+
+.linkInput{
+    width:  402px;
+}
+.text-red{
+    font-size:  10px;
+}

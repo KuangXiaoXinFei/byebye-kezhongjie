@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.dao.AuthResourceMapper">
+  <select id="getResourceList" resultMap="BaseResultMap">
+    select resource_id,resource_key,resource_name
+    from auth_resource where is_active = 1
+  </select>
+
+</mapper>

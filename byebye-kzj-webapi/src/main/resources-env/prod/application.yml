@@ -1,0 +1,160 @@
+server:
+  port: 8080
+  servlet:
+        context-path: /
+spring:
+    datasource:
+        name: druidDataSource
+        type: com.alibaba.druid.pool.DruidDataSource
+        #druid相关配置
+        druid:
+          #监控统计拦截的filters
+          filters: stat
+          driver-class-name: com.mysql.jdbc.Driver
+          #基本属性
+          url: jdbc:mysql://192.168.30.49:3306/baic_app?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+          username: crmadmin
+          password: 1qaz@WSX
+          #配置初始化大小/最小/最大
+          initial-size: 1
+          min-idle: 1
+          max-active: 20
+          #获取连接等待超时时间
+          max-wait: 60000
+          #间隔多久进行一次检测，检测需要关闭的空闲连接
+          time-between-eviction-runs-millis: 60000
+          #一个连接在池中最小生存的时间
+          min-evictable-idle-time-millis: 300000
+          validation-query: SELECT 'x'
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+          pool-prepared-statements: false
+          max-pool-prepared-statement-per-connection-size: 20
+    http:
+        multipart:
+          max-file-size: 50Mb
+          max-request-size: 50Mb
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cloudyoung.baic.webapi.model
+
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    returnPageInfo: check
+
+#redis配置
+redis:
+  model: sentinel
+  password: myredis
+  database: 0
+  masterName: master-6380
+  singleNodes:
+  sentinel: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
+  slaveNode:
+  masterNode:
+
+cos:
+  access-key: AKIDTlob9RdJr9BxTjmTxB9rJVR7XkkYIXhe
+  secret-key: rVwAC4jBPRGrFQN6cuzqUwBE3f5JHzRe
+  bucket-name: baic-1257102406
+  region: ap-beijing
+  url-prefix: http://${cos.bucket-name}.picbj.myqcloud.com/
+
+#短信配置
+sms:
+  uid: 33FYlTnODKAY
+  password: t57h95f8
+  template_id: xhembFX4yQ2C
+  send_url: http://beiqi.weimiapi.com/2/sms/send.html
+
+#阿里云
+aliyun:
+  scan-face:
+    host: http://dm-51.data.aliyun.com
+    path: /rest/160601/ocr/ocr_idcard.json
+    appCode: 5ce9f15c77df400a894dbb65600c1119
+  scan-vin:
+    host: https://dm-53.data.aliyun.com
+    path: /rest/160601/ocr/ocr_vehicle.json
+    appCode: 49b09225bab34045bcc145f137725e18
+  filter-word:
+    host: http://apistore.tongchengyue.com
+    path: /swc/doFilter
+    appCode: 65945af40da04c3586b88726327e59d3
+
+#外网请求地址
+liandian:
+  sand-url:
+    authirty_href: https://tst-api-iot.uaes.com/car/v1/carAuth/viewAuth       #认证
+    oil-wear-search-href: https://tst-api-iot.uaes.com/fuelconp/v1/fuel/fuelScale/  #油耗查询
+    trouble-history-href: https://tst-api-iot.uaes.com/power/v1/powerguard/breakdown/list  #查询历史故障总览
+    battery-life-href: https://tst-api-iot.uaes.com/battery/v1/battery/life #电池寿命查询
+    battery-power-href: https://tst-api-iot.uaes.com/battery/v1/battery/power  #电池电量查询
+    driving-style-href: https://tst-api-iot.uaes.com/driving/v1/drivingtalent/metrics/  #驾驶达人驾驶
+    power-sys-href: https://tst-api-iot.uaes.com/power/v1/powerguard/powerdetails   #获取动力系统
+    oil-wear-setting-href: https://tst-api-iot.uaes.com/car/v1/carAttribute/app/create #用油会计设置
+    oil-wear-monitor-href: https://tst-api-iot.uaes.com/fuelconp/v1/fuel/consumption/monitor #油耗监控
+    oil-wear-attribute-href: https://tst-api-iot.uaes.com/car/v1/carAttribute/app/byAttributes #油耗查询
+    secretary-maintenance-href: https://tst-api-iot.uaes.com/secretary/v1/maintenance/getBase #保养秘书
+    secretary-record-href: https://tst-api-iot.uaes.com/secretary/v1/maintenance/record  #保养记录
+    gas-station-href: https://tst-api-iot.uaes.com/gas/v1/gasStation/getGasStationNearBy #加油站信息
+    surplus-oil-wear-href: https://tst-api-iot.uaes.com/car/v1/car/rechargeMileage #剩余油量显示
+  power-sys:
+    good: 很棒，车辆状态非常安全，请放心驾驶~
+    nice: 不影响驾驶，但车辆性能下降，油耗增多，建议尽快维修
+    middle: 车辆驾驶性能受损，有严重的故障风险，请尽快前往4S店做详细检查。
+    notgood: 车辆驾驶性能严重受损，建议立即维修或呼叫车辆救援？
+
+#获取车辆信息接口
+vin-car:
+  cover-prefix-format: https://baic-1257102406.cos.ap-beijing.myqcloud.com/drive-life-app/x55-{0}-01.png
+  color-value: 墨玉黑|珠光白|克什米尔蓝|丹霞红|极光银
+
+#科大讯飞地址
+keda:
+  sand-url:
+    tsp-locatioin-href: http://autopre.openspeech.cn/tsp-baic/gateway/v1/location  #车辆位置坐标
+  open_id: apptest
+  open_key: ace03f11219ff1223765ea1adbf23123231dd84
+
+
+
+#高德地图api
+amap:
+  key: c89972217962ac8d12da40b33e8da565
+  amapconvert-url: https://restapi.amap.com/v3/assistant/coordinate/convert?locations=%s&coordsys=%s&output=json&key=c89972217962ac8d12da40b33e8da565
+
+#百度地图api
+baidumap:
+    ak: 27mzDSYmU6KaISBBgMYTHPQZFNzc3aBp
+    baiduconvert-url: http://api.map.baidu.com/geoconv/v1/?coords=%s&from=3&to=5&ak=27mzDSYmU6KaISBBgMYTHPQZFNzc3aBp
+
+wx:
+  appId: wx07698c9b1d647137
+  appSecret: fb4e945ffbf89f7c3bf3c6ec4346299e
+  mp:
+    appId: wx27142b3c6383ee70
+    appSecret: dbe999db02956f6bf4682131053fe3c8
+    ESTIMATETIME: 300000
+
+  #投诉URL
+complain:
+  url: http://www.sobot.com/chat/h5/index.html?sysNum=58e8021b74324ee89e626252961e1132&uname=%s&tel=%s
+
+#资讯分享
+news:
+  share:
+     detailUrl: http://baic.dev.cloud-young.cn/h5/share/news-detail.html?newsId=
+     brandLogo: http://www.baicmotor.com/Uploads/image/20170717/20170717232438_59770.png
+
+#城市
+city:
+  cityName: 110000,北京市|500000,重庆市|310000,上海市|120000,天津市

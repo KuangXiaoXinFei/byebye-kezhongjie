@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.dao.AuthRoleMapper">
+    <resultMap id="roleVo" type="com.cloudyoung.baic.vo.admin.RoleListVo" extends="BaseResultMap">
+        <result column="authContent" jdbcType="VARCHAR" property="authContent"/>
+        <collection property="authList" ofType="com.cloudyoung.baic.model.AuthResource">
+            <id column="resource_id" jdbcType="INTEGER" property="resourceId"/>
+            <result column="resource_name" jdbcType="VARCHAR" property="resourceName"/>
+            <result column="resource_key" jdbcType="VARCHAR" property="resourceKey"/>
+        </collection>
+    </resultMap>
+
+    <select id="getRolePageList" resultMap="roleVo">
+        select a.role_id,a.role_key,a.role_name,a.is_admin,GROUP_CONCAT(c.resource_name separator '、') authContent
+        from auth_role a
+        left join auth_role_resource b on a.role_id = b.role_Id and b.is_active = 1
+        left join auth_resource c on b.resource_Id = c.resource_id and c.is_active = 1
+        where a.is_active = 1
+        group by a.role_id
+        order by a.is_admin desc,a.create_time desc
+    </select>
+    <select id="isExistRole" resultMap="BaseResultMap" parameterType="map">
+        select <include refid="Base_Column_List" />
+        from auth_role where is_active = 1 and role_name = #{roleName}
+        <if test="roleId !=null and roleId !=0">
+            and role_id != #{roleId}
+        </if>
+    </select>
+    
+    <select id="getResourceListByRoleId" resultMap="roleVo">
+        select a.role_id,a.role_name,c.resource_id,c.resource_name,c.resource_key
+        from auth_role a
+        left join auth_role_resource b on a.role_id = b.role_Id and a.is_active = 1 and b.is_active = 1
+        left join auth_resource c on b.resource_Id = c.resource_id and c.is_active = 1
+        where a.role_id = #{roleId}
+    </select>
+    
+</mapper>

@@ -1,0 +1,47 @@
+/*
+* @Author: zhanglei
+* @Date:   2018-07-11 16:58:48
+* @Last Modified by:   zhanglei
+* @Last Modified time: 2018-07-12 14:58:21
+*/
+
+/* 添加按钮样式 */
+
+.cus-a-add {
+  position: relative;
+  top: -9px;
+}
+
+.cus-a-add > button {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* 弹出框多选框样式 */
+
+.margin-top-7 {
+  margin-top: 7px;
+  display: flex;
+}
+
+.margin-top-7 > input {
+  margin-right: 10px;
+}
+
+.margin-left-15 > input {
+  margin-left: 20px;
+}
+
+.margin-left-15 > input:first-child {
+  margin-left: 0;
+}
+
+.click-checkbox-span {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+  .margin-left-15 {
+    margin-left: 15px;
+  }
+}

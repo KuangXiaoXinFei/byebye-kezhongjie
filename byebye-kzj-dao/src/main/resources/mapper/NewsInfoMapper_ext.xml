@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.dao.NewsInfoMapper">
+
+    <resultMap id="NewsInfoVoMap" type="com.cloudyoung.baic.vo.admin.NewsInfoVo" extends="BaseResultMap">
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="serial_count" jdbcType="VARCHAR" property="serialCount"/>
+    </resultMap>
+
+    <resultMap id="NewsDetailVoMap" type="com.cloudyoung.baic.vo.admin.NewsDetailVo">
+        <id column="news_Id" jdbcType="INTEGER" property="newsId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="news_content" jdbcType="VARCHAR" property="newsContent"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+    </resultMap>
+
+    <select id="getNewsListByQuery" parameterType="com.cloudyoung.baic.vo.admin.NewsListQueryVo"
+            resultMap="NewsInfoVoMap">
+        select a.news_id,a.title,a.news_type,a.user_id,a.status,a.create_time,a.is_comment,a.source
+        ,b.user_name,ifnull(c.serial_count,0)as serial_count
+        from news_info a
+        INNER JOIN user_info b on b.user_id=a.user_id
+        left join ( select r.news_id,count(*)serial_count from news_car_relation r where r.is_active=1 GROUP BY
+        r.news_id
+        )c on c.news_id=a.news_Id
+        where a.is_active=1
+        <if test="brandId != null">
+            and exists (select 1 from news_car_relation d where d.news_id=a.news_Id
+            and d.brand_id =#{brandId}
+            <if test="serialId != null">
+                and d.serial_id=#{serialId}
+            </if>
+            )
+        </if>
+        <if test="newsId != null">
+            and a.news_id=#{newsId}
+        </if>
+        <if test="newsTitle != null and newsTitle!=''">
+            and a.title like #{newsTitle}
+        </if>
+        <if test="newsType != null">
+            and a.news_type = #{newsType}
+        </if>
+        <if test="userId != null">
+            and a.user_id=#{userId}
+        </if>
+        <if test="userName != null  and userName!=''">
+            and b.user_name like #{userName}
+        </if>
+        <if test="status != null">
+            and a.status=#{status}
+        </if>
+        <if test="source != null">
+            and a.source=#{source}
+        </if>
+        <if test="minCreateTime != null and maxCreateTime!=null">
+            and (a.create_time>=#{minCreateTime} and a.create_time&lt;=#{maxCreateTime})
+        </if>
+        order by a.news_Id desc
+    </select>
+
+    <!--资讯详情-->
+    <select id="getNewsDetailByNewsId" parameterType="java.lang.Integer" resultMap="NewsDetailVoMap">
+        select a.news_id,a.title,a.news_type,a.status,c.news_content
+        from news_info a
+        LEFT JOIN news_content c on c.news_id=a.news_id
+        where a.is_active=1 and a.news_id=#{newsId}
+    </select>
+
+    <update id="setNewsStatusAndCommentStatusByNewsIdList" parameterType="map">
+        update news_info
+        <set>
+            update_time = now(),
+            <if test="isComment != null">
+                is_comment = #{isComment},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where news_id in
+        <foreach collection="newsIdList" separator="," open="(" close=")" item="newsId">
+            #{newsId}
+        </foreach>
+        <if test="unStatus != null">
+            and status = #{unStatus}
+        </if>
+    </update>
+
+    <select id="getListByQuery" resultMap="NewsInfoVoMap">
+        select a.news_id,a.title,a.news_type,a.user_id,a.status,a.create_time,a.is_comment,a.source
+        ,b.user_name,ifnull(c.serial_count,0)as serial_count
+        from news_info a
+        INNER JOIN user_info b on b.user_id=a.user_id
+        left join ( select r.news_id,count(*)serial_count from news_car_relation r where r.is_active=1 GROUP BY
+        r.news_id
+        )c on c.news_id=a.news_Id
+        where a.is_active=1
+        and a.user_id=1
+        order by a.news_Id desc
+        limit 10
+    </select>
+
+</mapper>

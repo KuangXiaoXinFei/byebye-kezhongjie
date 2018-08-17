@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.dao.PushAlertInfoMapper">
+    <resultMap id="PushAlertMap" type="com.cloudyoung.baic.vo.admin.PushAlertInfoVo" extends="BaseResultMap">
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="level_text" jdbcType="VARCHAR" property="levelText"/>
+    </resultMap>
+
+    <select id="getPageList" parameterType="com.cloudyoung.baic.vo.admin.PushAlertQueryVo"
+            resultMap="PushAlertMap">
+        select a.push_id,a.user_id,b.user_name,b.mobile,a.vin_code,
+        (case a.level when 0 then '零部件正常'
+        when 1 then '零部件告警'
+        when 2 then '零部件故障'
+        when 10 then '非零部件通知'
+        when 11 then '非零部件预警'
+        when 12 then '非零部件故障'
+        end) level_text,
+        a.level,a.push_content,a.occur_time,a.create_time
+        from push_alert_info a
+        left join user_info b on a.user_id = b.user_id and b.is_active = 1
+        where a.is_active = 1
+        <if test="pushId!=null">
+            and a.push_id = #{pushId}
+        </if>
+        <if test="level!=null">
+            and a.level = #{level}
+        </if>
+        <if test="vin!=null and vin!=''">
+            and a.vin_code = #{vin}
+        </if>
+        <if test="userName != null and userName !=''">
+            and b.user_name like '%${userName}%'
+        </if>
+        <if test="mobile!=null and mobile !=''">
+            and b.mobile = #{mobile}
+        </if>
+        <if test="minOccurTime !=null and maxOccurTime ==null">
+            and a.occur_time &gt; #{minOccurTime}
+        </if>
+        <if test="minOccurTime ==null and maxOccurTime !=null">
+            and a.occur_time &lt; #{maxOccurTime}
+        </if>
+        <if test="minOccurTime !=null and maxOccurTime !=null">
+            and (a.occur_time &gt; #{minOccurTime} and a.occur_time &lt; #{maxOccurTime})
+        </if>
+        <if test="minCreateTime !=null and maxCreateTime ==null">
+            and a.create_time &gt;= #{minCreateTime}
+        </if>
+        <if test="minCreateTime == null and maxCreateTime !=null">
+            and a.create_time &lt;= #{maxCreateTime}
+        </if>
+        <if test="minCreateTime != null and maxCreateTime!=null">
+            and (a.create_time&gt;=#{minCreateTime} and a.create_time&lt;=#{maxCreateTime})
+        </if>
+        order by a.occur_time desc
+    </select>
+</mapper>

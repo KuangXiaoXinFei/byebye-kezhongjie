@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.dao.NewsCommentMapper">
+    <resultMap id="NewsCommentMap" type="com.cloudyoung.baic.vo.admin.NewsCommentVo" extends="BaseResultMap">
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="user_name" jdbcType="INTEGER" property="userName"/>
+    </resultMap>
+
+    <select id="getQueryList" resultMap="NewsCommentMap" parameterType="com.cloudyoung.baic.vo.admin.CommentQueryVo">
+        select distinct a.comment_id,a.comment_content,a.rela_comment_id,a.create_time,
+        a.news_Id,b.title,a.user_id,c.user_name
+        from news_comment a
+        left join news_info b on a.news_id = b.news_Id and b.is_active = 1
+        left join user_info c on a.user_id = c.user_id and c.is_active = 1
+        where a.is_active = 1
+        <if test="commentId!=null">
+            and a.comment_id = #{commentId}
+        </if>
+        <if test="commentContent!=null and commentContent !=''">
+            and a.comment_content like '%${commentContent}%'
+        </if>
+        <if test="userId !=null">
+            and a.user_id = #{userId}
+        </if>
+        <if test="userName != null and userName != ''">
+            and c.user_name like '%${userName}%'
+        </if>
+        <if test="relaCommentId!=null">
+            and a.rela_comment_id = #{relaCommentId}
+        </if>
+        <if test="newsId !=null">
+            and a.news_id = #{newsId}
+        </if>
+        <if test="title != null and title != ''">
+            and b.title like '%${title}%'
+        </if>
+        <if test="minCreateTime !=null and maxCreateTime ==null">
+            and a.create_time &gt;= #{minCreateTime}
+        </if>
+        <if test="minCreateTime == null and maxCreateTime !=null">
+            and a.create_time &lt;= #{maxCreateTime}
+        </if>
+        <if test="minCreateTime != null and maxCreateTime!=null">
+            and (a.create_time&gt;=#{minCreateTime} and a.create_time&lt;=#{maxCreateTime})
+        </if>
+        order by a.create_time desc
+    </select>
+</mapper>

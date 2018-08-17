@@ -1,0 +1,441 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "微软雅黑";
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    height: 100%;
+    background: #F4F4F4;
+    background: url(../images/bg.png) no-repeat center top;
+    background-size: 100% 100%;
+}
+
+.wrap {
+    width: 1366px;
+    height: 680px;
+    /* background: url(../images/bg.png) no-repeat center top;
+    background-size: 100% 100%; */
+    position: relative;
+    top: 50%;
+    margin: 0 auto;
+    margin-top: -340px;
+}
+
+.header {
+    width: 100%;
+    height: 70px;
+}
+
+.header img {
+    padding: 15px 23px 0 41px;
+    float: left;
+}
+
+.header span {
+    float: left;
+    display: inline-block;
+    font-size: 22px;
+    color: #353535;
+    letter-spacing: 3px;
+    line-height: 65px;
+    font-weight: bold;
+}
+
+.content {
+    position: absolute;
+    top: 21%;
+    right: 14%;
+    width: 27%;
+    background: #FFFFFF;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.content h1 {
+    font-size: 28px;
+    color: #333333;
+    padding: 9% 0 7% 51px;
+}
+
+.content label {
+    width: 72%;
+    padding: 0 53px;
+    font-size: 14px;
+    color: #999999;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.content label span {
+    padding-left: 15px;
+    font-size: 10px;
+    color: #FF6666;
+    letter-spacing: 0;
+}
+
+.content .login_pass {
+    margin-bottom: 0;
+}
+
+.content p {
+    position: relative;
+    margin: 0 52px;
+    background: #F7F8FB;
+    border-radius: 3px;
+    height: 36px;
+}
+
+.content p input {
+    border: 0;
+    padding-left: 15px;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #333;
+    letter-spacing: 0;
+    background: #F7F8FB;
+}
+
+.content p input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #B8BED5;
+    letter-spacing: 0;
+}
+
+.content p input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #F7F8FB inset;
+    -webkit-text-fill-color: #45495E;
+}
+
+.content .content-title {
+    padding: 10% 52px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.content-title .title-bold {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333333;
+    letter-spacing: 3.33px;
+    margin-right: 7px;
+}
+
+.content-title .title-weak {
+    font-size: 14px;
+    color: #666666;
+    letter-spacing: 1.6px;
+    display: flex;
+    align-items: center;
+}
+
+.title-weak .line {
+    width: 1px;
+    height: 12px;
+    background: #BABBBF;
+    border-radius: 54px;
+    margin-right: 9px;
+}
+
+.content .c_password {
+    width: 100%;
+    font-size: 14px;
+    color: #898FAD;
+    display: inline-block;
+    background: #fff;
+    border-radius: 0;
+    padding: 8px 44px 8px 52px;
+}
+
+.content .c_password span {
+    font-size: 10px;
+    color: #898FAD;
+    letter-spacing: 0;
+    display: inline-block;
+    margin-left: 5px;
+    float: left;
+}
+
+.content .c_password input {
+    float: left;
+    margin-top: 2px;
+}
+
+.content .c_password a {
+    float: right;
+    font-size: 10px;
+    color: #13ACAC;
+    letter-spacing: 0;
+    text-decoration: none;
+}
+
+.content .login {
+    width: 100%;
+    display: block;
+    background: #1F9ED0;
+    border-radius: 3px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    outline: none;
+    border: none;
+}
+
+.content .login-box {
+    padding: 7% 52px;
+}
+
+.content .c_right {
+    float: left;
+    width: 73%;
+    height: 100%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    font-size: 12px;
+    color: #FFFFFF;
+    /* background: #8F98A7; */
+}
+
+.footer p {
+    text-align: center;
+    font-size: 12px;
+    color: #FFFFFF;
+    margin-top: 13px;
+}
+
+.footer p a {
+    padding: 0 3px;
+    height: 5px;
+    color: #9CAAC3;
+    text-decoration: none;
+}
+
+.footer p a i {
+    display: inline-block;
+    height: 8px;
+    padding-left: 7px;
+    border-right: 1px solid #A1AAC3;
+}
+
+.footer p a:hover {
+    color: #3E495B;
+}
+
+.footer p:last-child {
+    font-size: 12px;
+    color: #9CAAC3;
+}
+
+.tan {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.tan .tan_mima2 {
+    display: none;
+}
+
+.tan .tan_mima,
+.tan .tan_mima2 {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    margin-left: -170px;
+    width: 340px;
+    height: 256px;
+    background: #FFFFFF;
+    border-radius: 3px;
+}
+
+.tan .tan_mima .tan_header,
+.tan .tan_mima2 .tan_header {
+    padding: 6px 10px;
+    width: 100%;
+    background: #F7F8FB;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #333333;
+}
+
+.tan .tan_mima .tan_header img,
+.tan .tan_mima2 .tan_header img {
+    float: right;
+    margin-top: 3px;
+}
+
+.tan .tan_mima .tan_header img:hover,
+.tan .tan_mima2 .tan_header img:hover {
+    cursor: pointer;
+}
+
+.tan .tan_mima .tan_content,
+.tan .tan_mima2 .tan_content {
+    padding: 40px 42px 40px 42px;
+}
+
+.tan .tan_mima .tan_content p,
+.tan .tan_mima2 .tan_content p {
+    height: 36px;
+}
+
+.tan .tan_mima .tan_content p:nth-child(2),
+.tan .tan_mima2 .tan_content p:nth-child(2) {
+    margin-top: 20px;
+}
+
+.tan .tan_mima .tan_content p .tel,
+.tan .tan_mima2 .tan_content p .tel {
+    background: #F7F8FB;
+    border-radius: 3px;
+    border: 0;
+    padding-left: 15px;
+    outline: none;
+    width: 94%;
+    height: 100%;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #898FAD;
+    letter-spacing: 0;
+}
+
+.tan .tan_mima .tan_content p .telyan,
+.tan .tan_mima2 .tan_content p .telyan {
+    width: 54%;
+    height: 100%;
+    background: #F7F8FB;
+    border-radius: 3px;
+    border: 0;
+    padding-left: 15px;
+    outline: none;
+}
+
+.tan .tan_mima .tan_content p button,
+.tan .tan_mima2 .tan_content p button {
+    width: 37%;
+    margin-left: 3%;
+    line-height: 32px;
+    background: #fff;
+    border: 1px solid #45495E;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #45495E;
+}
+
+.tan .tan_mima .tan_content p .tan_send,
+.tan .tan_mima2 .tan_content p .tan_send {
+    background: #DFDFDF;
+    color: #FFFFFF;
+    letter-spacing: 0.45px;
+    border: 0;
+}
+
+.tan .tan_mima .tan_content p input::-webkit-input-placeholder,
+.tan .tan_mima2 .tan_content p input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #898FAD;
+    letter-spacing: 0;
+}
+
+.tan .tan_mima .tan_content p input:-webkit-autofill,
+.tan .tan_mima2 .tan_content p input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #F7F8FB inset;
+    -webkit-text-fill-color: #898FAD;
+}
+
+.tan .tan_mima .tan_content label,
+.tan .tan_mima2 .tan_content label {
+    line-height: 14px;
+    font-size: 10px;
+    color: #FF6666;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.tan .tan_mima .tan_content .next,
+.tan .tan_mima .tan_content .next2,
+.tan .tan_mima2 .tan_content .next,
+.tan .tan_mima2 .tan_content .next2 {
+    display: block;
+    background: #13ACAC;
+    border-radius: 3px;
+    width: 130px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-top: 26px;
+    margin-left: 65px;
+}
+
+.tan .tan_success,
+.tan .tan_fail {
+    display: none;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin-left: -100px;
+    width: 200px;
+    height: 60px;
+    background: #FFFFFF;
+    border-radius: 3px;
+}
+
+.tan .tan_success p,
+.tan .tan_fail p {
+    line-height: 60px;
+    font-size: 16px;
+    color: #45495E;
+    letter-spacing: 0.4px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.tan .tan_success p span,
+.tan .tan_fail p span {
+    width: 60%;
+    float: left;
+}
+
+.tan .tan_success p img,
+.tan .tan_fail p img {
+    float: left;
+    margin-top: 18px;
+    margin-left: 5px;
+}
+
+.tan .tan_success p .img_fail,
+.tan .tan_fail p .img_fail {
+    margin-top: 23px;
+}
+
+button:hover,
+a:hover {
+    cursor: pointer;
+}

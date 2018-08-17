@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.dao.NewsCarRelationMapper">
+
+
+    <!--根据资讯Id获取资讯的关联车系信息-->
+    <select id="getListByNewsId" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select rela_id,news_id,brand_id,serial_id,is_active from news_car_relation
+        where news_id=#{newsId}
+        <if test="isActive != null">
+            and is_active = #{isActive}
+        </if>
+    </select>
+
+    <!--批量插入资讯关联车系信息-->
+    <insert id="insertNewsCarRelationByBatch" parameterType="java.util.List">
+        insert into news_car_relation (news_id, brand_id,serial_id,is_active,create_time,update_time )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.newsId}, #{item.brandId}, #{item.serialId},1, now(),now())
+        </foreach>
+    </insert>
+
+    <!--批量更新资讯关联车系信息-->
+    <update id="updateNewsCarRelationByBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" open="" close="" separator=";">
+            UPDATE news_car_relation
+            <set>
+                <if test="item.isActive != null">
+                    is_active = #{item.isActive},
+                </if>
+                <if test="item.brandId != null">
+                    brand_id = #{item.brandId},
+                </if>
+                <if test="item.itemName != null">
+                    serial_id = #{item.serialId},
+                </if>
+                update_time=now()
+            </set>
+            WHERE
+            rela_id = #{item.relaId}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,100 @@
+server:
+  port: 8888
+  servlet:
+        context-path: /
+spring:
+    datasource:
+        name: druidDataSource
+        type: com.alibaba.druid.pool.DruidDataSource
+        #druid相关配置
+        druid:
+          #监控统计拦截的filters
+          filters: stat
+          driver-class-name: com.mysql.jdbc.Driver
+          #基本属性
+          url: jdbc:mysql://{RDS_DATABASE_HOST_REPLACE}/baic_app?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+          username: {RDS_DATABASE_USER_REPLACE}
+          password: {RDS_DATABASE_PASSWD_REPLACE}
+          #配置初始化大小/最小/最大
+          initial-size: 1
+          min-idle: 1
+          max-active: 20
+          #获取连接等待超时时间
+          max-wait: 60000
+          #间隔多久进行一次检测，检测需要关闭的空闲连接
+          time-between-eviction-runs-millis: 60000
+          #一个连接在池中最小生存的时间
+          min-evictable-idle-time-millis: 300000
+          validation-query: SELECT 'x'
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+          pool-prepared-statements: false
+          max-pool-prepared-statement-per-connection-size: 20
+    freemarker:
+        template-loader-path: 'classpath:/templates/'
+        charset: utf-8
+        settings:
+          template_update_delay: 10
+          locale: 'zh_CN'
+          datetime_format: 'yyyy-MM-dd'
+          date_format: 'yyy-MM-dd'
+          number_format: '#.##'
+        suffix: .ftl
+        request-context-attribute: request
+    #设定静态文件路径，js,css等
+    mvc:
+        static-path-pattern: '/static/**'
+    servlet:
+        multipart:
+          max-file-size: 50Mb
+    http:
+        multipart:
+          max-request-size: 50Mb
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cloudyoung.baic.admin.model
+
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    returnPageInfo: check
+
+#redis配置
+redis:
+  model: single
+  password: {REDIS_DATABASE_PASSWD_REPLACE}
+  database: 0
+  masterName: master-6380
+  singleNodes: {REDIS_DATABASE_HOST_REPLACE}
+  sentinel:
+  slaveNode:
+  masterNode:
+
+cos:
+  access-key: AKIDTlob9RdJr9BxTjmTxB9rJVR7XkkYIXhe
+  secret-key: rVwAC4jBPRGrFQN6cuzqUwBE3f5JHzRe
+  bucket-name: baic-1257102406
+  region: ap-beijing
+  url-prefix: http://${cos.bucket-name}.picbj.myqcloud.com/
+
+#MD5 salt
+md5:
+  salt: cloudyoung
+  password: 123456
+
+kafka:
+  bootstrap-servers: 47.100.236.90:9093,47.101.140.116:9093,47.101.144.238:9093
+  liandian-topic: UAES2BAICCELL
+  gufen-it-servers: 62.234.202.253:9092
+  test-topic: CarConfigInfoTest             #测试用的kafka
+  vin-topic: VINUUIDTest                  #车辆的VIN和UUID
+  mainten-topic: MaintenanceSheetTest     #委托单维修项目相关
+  msservice-topic: MSServiceTest          #委托单维修项目相关
+  msc-topic: MSComponentTest              #委托单配置相关
+  car-config-topic: VehicleConfigInfoTest    #车辆配置信息

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.dao.AuthAccountMapper">
+    <select id="getAuthAccountListByQuery" parameterType="com.cloudyoung.baic.vo.admin.AuthAccountQueryVo"
+            resultType="com.cloudyoung.baic.vo.admin.AuthAccountVo">
+        SELECT t1.account_id AS accountId,
+        t1.account_name AS accountName,
+        t1.real_name AS realName,
+        t1.mobile,
+        t1.email,
+        t1.role_id AS roleId,
+        t2.role_name AS roleName,
+        t2.is_admin AS isAdmin
+        FROM auth_account t1
+        LEFT JOIN auth_role t2 ON t1.role_id = t2.role_id AND t2.is_active = 1
+        WHERE t1.is_active = 1
+        <if test="accountName != null and accountName != ''">
+            and t1.account_name like '%${accountName}%'
+        </if>
+        <if test="mobile != null and mobile != ''">
+            and t1.mobile=#{mobile}
+        </if>
+        <if test="email != null and email != ''">
+            and t1.email like '%${email}%'
+        </if>
+        <if test="realName != null and realName != ''">
+            and t1.real_name like '%${realName}%'
+        </if>
+        <if test="roleId != null and roleId>0">
+            and t1.role_id=#{roleId}
+        </if>
+        ORDER BY t2.is_admin DESC,t1.create_time DESC
+    </select>
+
+    <select id="getResourceListByAccountName" resultType="com.cloudyoung.baic.vo.admin.ResourceVo" parameterType="java.lang.String">
+        select a.resource_id resourceId,a.resource_key resourceKey,a.resource_name resourceName,a.resource_url resourceUrl,a.icon icon,a.parent_id parentId,a.order_num orderNum
+        from auth_resource a
+        left join auth_role_resource b on a.resource_id = b.resource_Id and b.is_active = 1
+        left join auth_role c on b.role_id = c.role_id and c.is_active = 1
+        left join auth_account d on c.role_id = d.role_id and d.is_active = 1
+        where d.account_name = #{name}
+    </select>
+
+</mapper>

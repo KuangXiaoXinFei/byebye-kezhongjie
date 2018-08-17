@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.webapi.dao.DealerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.webapi.model.DealerInfo">
+    <id column="dealer_id" jdbcType="INTEGER" property="dealerId" />
+    <result column="dealer_code" jdbcType="VARCHAR" property="dealerCode" />
+    <result column="dealer_name" jdbcType="VARCHAR" property="dealerName" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="sale_address" jdbcType="VARCHAR" property="saleAddress" />
+    <result column="service_address" jdbcType="VARCHAR" property="serviceAddress" />
+    <result column="service_call" jdbcType="VARCHAR" property="serviceCall" />
+    <result column="sale_call" jdbcType="VARCHAR" property="saleCall" />
+    <result column="help_call" jdbcType="VARCHAR" property="helpCall" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="service_longitude" jdbcType="VARCHAR" property="serviceLongitude" />
+    <result column="service_latitude" jdbcType="VARCHAR" property="serviceLatitude" />
+    <result column="sale_longitude" jdbcType="VARCHAR" property="saleLongitude" />
+    <result column="sale_latitude" jdbcType="VARCHAR" property="saleLatitude" />
+    <result column="is_active" jdbcType="TINYINT" property="isActive" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    dealer_id, dealer_code, dealer_name, company_name, sale_address, service_address, 
+    service_call, sale_call, help_call, city_id, service_longitude, service_latitude, 
+    sale_longitude, sale_latitude, is_active, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.cloudyoung.baic.webapi.model.DealerInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dealer_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dealer_info
+    where dealer_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dealer_info
+    where dealer_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.webapi.model.DealerInfoExample">
+    delete from dealer_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cloudyoung.baic.webapi.model.DealerInfo">
+    <selectKey keyProperty="dealerId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into dealer_info (dealer_code, dealer_name, company_name, 
+      sale_address, service_address, service_call, 
+      sale_call, help_call, city_id, 
+      service_longitude, service_latitude, sale_longitude, 
+      sale_latitude, is_active, create_time, 
+      update_time)
+    values (#{dealerCode,jdbcType=VARCHAR}, #{dealerName,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{saleAddress,jdbcType=VARCHAR}, #{serviceAddress,jdbcType=VARCHAR}, #{serviceCall,jdbcType=VARCHAR}, 
+      #{saleCall,jdbcType=VARCHAR}, #{helpCall,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, 
+      #{serviceLongitude,jdbcType=VARCHAR}, #{serviceLatitude,jdbcType=VARCHAR}, #{saleLongitude,jdbcType=VARCHAR}, 
+      #{saleLatitude,jdbcType=VARCHAR}, #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloudyoung.baic.webapi.model.DealerInfo">
+    <selectKey keyProperty="dealerId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into dealer_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dealerCode != null">
+        dealer_code,
+      </if>
+      <if test="dealerName != null">
+        dealer_name,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="saleAddress != null">
+        sale_address,
+      </if>
+      <if test="serviceAddress != null">
+        service_address,
+      </if>
+      <if test="serviceCall != null">
+        service_call,
+      </if>
+      <if test="saleCall != null">
+        sale_call,
+      </if>
+      <if test="helpCall != null">
+        help_call,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="serviceLongitude != null">
+        service_longitude,
+      </if>
+      <if test="serviceLatitude != null">
+        service_latitude,
+      </if>
+      <if test="saleLongitude != null">
+        sale_longitude,
+      </if>
+      <if test="saleLatitude != null">
+        sale_latitude,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dealerCode != null">
+        #{dealerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealerName != null">
+        #{dealerName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleAddress != null">
+        #{saleAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAddress != null">
+        #{serviceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceCall != null">
+        #{serviceCall,jdbcType=VARCHAR},
+      </if>
+      <if test="saleCall != null">
+        #{saleCall,jdbcType=VARCHAR},
+      </if>
+      <if test="helpCall != null">
+        #{helpCall,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceLongitude != null">
+        #{serviceLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceLatitude != null">
+        #{serviceLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="saleLongitude != null">
+        #{saleLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="saleLatitude != null">
+        #{saleLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cloudyoung.baic.webapi.model.DealerInfoExample" resultType="java.lang.Long">
+    select count(*) from dealer_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dealer_info
+    <set>
+      <if test="record.dealerId != null">
+        dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerCode != null">
+        dealer_code = #{record.dealerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealerName != null">
+        dealer_name = #{record.dealerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null">
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleAddress != null">
+        sale_address = #{record.saleAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceAddress != null">
+        service_address = #{record.serviceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceCall != null">
+        service_call = #{record.serviceCall,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleCall != null">
+        sale_call = #{record.saleCall,jdbcType=VARCHAR},
+      </if>
+      <if test="record.helpCall != null">
+        help_call = #{record.helpCall,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null">
+        city_id = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceLongitude != null">
+        service_longitude = #{record.serviceLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceLatitude != null">
+        service_latitude = #{record.serviceLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleLongitude != null">
+        sale_longitude = #{record.saleLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleLatitude != null">
+        sale_latitude = #{record.saleLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isActive != null">
+        is_active = #{record.isActive,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dealer_info
+    set dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      dealer_code = #{record.dealerCode,jdbcType=VARCHAR},
+      dealer_name = #{record.dealerName,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      sale_address = #{record.saleAddress,jdbcType=VARCHAR},
+      service_address = #{record.serviceAddress,jdbcType=VARCHAR},
+      service_call = #{record.serviceCall,jdbcType=VARCHAR},
+      sale_call = #{record.saleCall,jdbcType=VARCHAR},
+      help_call = #{record.helpCall,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=INTEGER},
+      service_longitude = #{record.serviceLongitude,jdbcType=VARCHAR},
+      service_latitude = #{record.serviceLatitude,jdbcType=VARCHAR},
+      sale_longitude = #{record.saleLongitude,jdbcType=VARCHAR},
+      sale_latitude = #{record.saleLatitude,jdbcType=VARCHAR},
+      is_active = #{record.isActive,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.webapi.model.DealerInfo">
+    update dealer_info
+    <set>
+      <if test="dealerCode != null">
+        dealer_code = #{dealerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealerName != null">
+        dealer_name = #{dealerName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleAddress != null">
+        sale_address = #{saleAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAddress != null">
+        service_address = #{serviceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceCall != null">
+        service_call = #{serviceCall,jdbcType=VARCHAR},
+      </if>
+      <if test="saleCall != null">
+        sale_call = #{saleCall,jdbcType=VARCHAR},
+      </if>
+      <if test="helpCall != null">
+        help_call = #{helpCall,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceLongitude != null">
+        service_longitude = #{serviceLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceLatitude != null">
+        service_latitude = #{serviceLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="saleLongitude != null">
+        sale_longitude = #{saleLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="saleLatitude != null">
+        sale_latitude = #{saleLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where dealer_id = #{dealerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.webapi.model.DealerInfo">
+    update dealer_info
+    set dealer_code = #{dealerCode,jdbcType=VARCHAR},
+      dealer_name = #{dealerName,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      sale_address = #{saleAddress,jdbcType=VARCHAR},
+      service_address = #{serviceAddress,jdbcType=VARCHAR},
+      service_call = #{serviceCall,jdbcType=VARCHAR},
+      sale_call = #{saleCall,jdbcType=VARCHAR},
+      help_call = #{helpCall,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      service_longitude = #{serviceLongitude,jdbcType=VARCHAR},
+      service_latitude = #{serviceLatitude,jdbcType=VARCHAR},
+      sale_longitude = #{saleLongitude,jdbcType=VARCHAR},
+      sale_latitude = #{saleLatitude,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where dealer_id = #{dealerId,jdbcType=INTEGER}
+  </update>
+</mapper>

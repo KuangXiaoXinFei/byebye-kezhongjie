@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.dao.AuthRoleResourceMapper">
+    <insert id="addAuthRoleResource" parameterType="com.cloudyoung.baic.model.AuthRoleResource">
+        INSERT INTO auth_role_resource(role_Id,resource_Id,is_active,create_time,update_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.roleId},#{item.resourceId },1, now(), now())
+        </foreach>
+    </insert>
+
+    <select id="getRoleResourceByRoleId" resultType="java.lang.Integer">
+        select rale_id from auth_role_resource where is_active = 1 and role_id = #{roleId}
+    </select>
+
+    <update id="deleteByIdList" parameterType="list">
+        update auth_role_resource set is_active = 0 ,update_time = now() where rale_id in 
+        <foreach collection="ids" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+</mapper>

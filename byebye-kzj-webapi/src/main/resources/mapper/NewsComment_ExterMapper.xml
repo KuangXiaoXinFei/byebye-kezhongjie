@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudyoung.baic.webapi.dao.NewsCommentMapper">
+    <resultMap id="CommentListMap" type="com.cloudyoung.baic.webapi.vo.CommentListVo" extends="BaseResultMap">
+        <id column="comment_id" jdbcType="INTEGER" property="commentId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="comment_content" jdbcType="VARCHAR" property="commentContent"/>
+        <result column="rela_comment_id" jdbcType="INTEGER" property="relaCommentId"/>
+        <result column="rela_comment_user_id" jdbcType="INTEGER" property="relaCommentUserId"/>
+        <result column="like_count" jdbcType="INTEGER" property="likeCount"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="isLike" jdbcType="INTEGER" property="isLike"/>
+    </resultMap>
+
+    <select id="getCommentList" resultMap="CommentListMap" parameterType="map">
+        select a.comment_id,a.user_id,c.user_name, c.avatar,
+        a.comment_content,a.like_count,
+        (case when b.rela_id>0 then 1 else 0 end ) isLike,a.create_time
+        from news_comment a
+        left join user_like_comment_info b on a.comment_id = b.comment_id and b.is_active = 1 and b.user_id = #{userId}
+        left join user_info c on a.user_id = c.user_id and c.is_active = 1
+        where a.is_active = 1 and a.rela_comment_id =0
+        <if test="newsId !=null and newsId !=0">
+            and a.news_id = #{newsId}
+        </if>
+        <if test="commentId !=null and commentId!=0">
+            and a.comment_id &lt; #{commentId}
+        </if>
+        order by a.comment_id desc
+        <if test="pageSize != null">
+            limit #{pageSize}
+        </if>
+    </select>
+    <select id="getChildrenList" resultMap="CommentListMap" parameterType="map">
+        select a.comment_id,a.user_id,c.user_name, c.avatar,a.rela_comment_id,a.rela_comment_user_id,
+        a.comment_content,a.like_count,
+        (case when b.rela_id>0 then 1 else 0 end ) isLike,a.create_time
+        from news_comment a
+        left join user_like_comment_info b on a.comment_id = b.comment_id and b.is_active = 1 and b.user_id=#{userId}
+        left join user_info c on a.user_id = c.user_id and c.is_active = 1
+        where a.is_active = 1 and a.rela_comment_id=#{id}
+        <if test="minId!=null and minId!=0">
+            and a.comment_id &lt; #{minId}
+        </if>
+        order by a.comment_id desc
+        <if test="pageSize !=null">
+            limit #{pageSize}
+        </if>
+    </select>
+
+    <select id="getChildCountsByCommentId" parameterType="list" resultType="map">
+        select rela_comment_id commentId,count(1) counts
+        from news_comment
+        where is_active = 1 and rela_comment_id in
+        <foreach collection="ids" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        group by rela_comment_id
+    </select>
+
+    <select id="getRealUserNameByUserId" parameterType="list" resultType="map">
+        select user_id userId,user_name userName
+        from user_info
+        where is_active =1 AND user_id in
+        <foreach collection="ids" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+    <select id="getCommentDetailById" resultMap="CommentListMap" parameterType="integer">
+        select a.comment_id,a.user_id,c.user_name, c.avatar,a.comment_content,a.like_count,
+        (case when b.rela_id>0 then 1 else 0 end ) isLike,a.create_time
+        from news_comment a
+        left join user_like_comment_info b on a.comment_id = b.comment_id and b.is_active = 1 and a.user_id = b.user_id
+        left join user_info c on a.user_id = c.user_id and c.is_active = 1
+        where a.is_active = 1 and a.rela_comment_id =0 and a.comment_id = #{commentId}
+        order by a.comment_id desc
+    </select>
+
+</mapper>

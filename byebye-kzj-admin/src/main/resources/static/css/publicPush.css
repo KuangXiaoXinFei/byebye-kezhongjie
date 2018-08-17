@@ -1,0 +1,17 @@
+.note-div{
+	border: 1px solid #E3E5E8;
+	width: 320px;
+	height: 160px;
+	padding: 0;
+}
+.note-div p{
+	color: #BEBEBE;
+	font-size: 14px;
+	float: right;
+	margin-right: 20px;
+}
+textarea{
+	border: none;
+	padding: 7px 16px;
+	box-sizing: border-box;
+}
