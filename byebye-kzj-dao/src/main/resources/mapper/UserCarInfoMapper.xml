@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.UserCarInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.UserCarInfo">
+<mapper namespace="com.byebye.kzj.dao.UserCarInfoMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.UserCarInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="vin_code" jdbcType="VARCHAR" property="vinCode" />
@@ -75,7 +75,7 @@
     id, user_id, vin_code, car_code, car_info, vin_url, engine_num, is_active, create_time, 
     update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.UserCarInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.UserCarInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -107,13 +107,13 @@
     delete from user_car_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.UserCarInfoExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.UserCarInfoExample">
     delete from user_car_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.UserCarInfo">
+  <insert id="insert" parameterType="com.byebye.kzj.model.UserCarInfo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -126,7 +126,7 @@
       #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.UserCarInfo">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.UserCarInfo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -190,7 +190,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.UserCarInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.UserCarInfoExample" resultType="java.lang.Long">
     select count(*) from user_car_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -250,7 +250,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.UserCarInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.UserCarInfo">
     update user_car_info
     <set>
       <if test="userId != null">
@@ -283,7 +283,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.UserCarInfo">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.UserCarInfo">
     update user_car_info
     set user_id = #{userId,jdbcType=INTEGER},
       vin_code = #{vinCode,jdbcType=VARCHAR},

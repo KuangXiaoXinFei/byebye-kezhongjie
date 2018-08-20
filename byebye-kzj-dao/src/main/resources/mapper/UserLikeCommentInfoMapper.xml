@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.UserLikeCommentInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.UserLikeCommentInfo">
+<mapper namespace="com.byebye.kzj.dao.UserLikeCommentInfoMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.UserLikeCommentInfo">
     <id column="rela_id" jdbcType="INTEGER" property="relaId" />
     <result column="comment_id" jdbcType="INTEGER" property="commentId" />
     <result column="news_id" jdbcType="INTEGER" property="newsId" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List">
     rela_id, comment_id, news_id, user_id, is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.UserLikeCommentInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.UserLikeCommentInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -103,13 +103,13 @@
     delete from user_like_comment_info
     where rela_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.UserLikeCommentInfoExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.UserLikeCommentInfoExample">
     delete from user_like_comment_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.UserLikeCommentInfo">
+  <insert id="insert" parameterType="com.byebye.kzj.model.UserLikeCommentInfo">
     <selectKey keyProperty="relaId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -120,7 +120,7 @@
       #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.UserLikeCommentInfo">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.UserLikeCommentInfo">
     <selectKey keyProperty="relaId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -166,7 +166,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.UserLikeCommentInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.UserLikeCommentInfoExample" resultType="java.lang.Long">
     select count(*) from user_like_comment_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -214,7 +214,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.UserLikeCommentInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.UserLikeCommentInfo">
     update user_like_comment_info
     <set>
       <if test="commentId != null">
@@ -238,7 +238,7 @@
     </set>
     where rela_id = #{relaId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.UserLikeCommentInfo">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.UserLikeCommentInfo">
     update user_like_comment_info
     set comment_id = #{commentId,jdbcType=INTEGER},
       news_id = #{newsId,jdbcType=INTEGER},

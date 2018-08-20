@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.AuthAccountMapper">
-    <select id="getAuthAccountListByQuery" parameterType="com.cloudyoung.baic.vo.admin.AuthAccountQueryVo"
-            resultType="com.cloudyoung.baic.vo.admin.AuthAccountVo">
+<mapper namespace="com.byebye.kzj.dao.AuthAccountMapper">
+    <select id="getAuthAccountListByQuery" parameterType="com.byebye.kzj.vo.admin.AuthAccountQueryVo"
+            resultType="com.byebye.kzj.vo.admin.AuthAccountVo">
         SELECT t1.account_id AS accountId,
         t1.account_name AS accountName,
         t1.real_name AS realName,
@@ -32,7 +32,7 @@
         ORDER BY t2.is_admin DESC,t1.create_time DESC
     </select>
 
-    <select id="getResourceListByAccountName" resultType="com.cloudyoung.baic.vo.admin.ResourceVo" parameterType="java.lang.String">
+    <select id="getResourceListByAccountName" resultType="com.byebye.kzj.vo.admin.ResourceVo" parameterType="java.lang.String">
         select a.resource_id resourceId,a.resource_key resourceKey,a.resource_name resourceName,a.resource_url resourceUrl,a.icon icon,a.parent_id parentId,a.order_num orderNum
         from auth_resource a
         left join auth_role_resource b on a.resource_id = b.resource_Id and b.is_active = 1

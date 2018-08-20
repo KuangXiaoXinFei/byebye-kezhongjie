@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.PublicPushMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.PublicPush">
+<mapper namespace="com.byebye.kzj.dao.PublicPushMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.PublicPush">
     <id column="public_id" jdbcType="INTEGER" property="publicId" />
     <result column="push_content" jdbcType="VARCHAR" property="pushContent" />
     <result column="push_status" jdbcType="TINYINT" property="pushStatus" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     public_id, push_content, push_status, is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.PublicPushExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.PublicPushExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,13 +102,13 @@
     delete from public_push
     where public_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.PublicPushExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.PublicPushExample">
     delete from public_push
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.PublicPush">
+  <insert id="insert" parameterType="com.byebye.kzj.model.PublicPush">
     <selectKey keyProperty="publicId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -117,7 +117,7 @@
     values (#{pushContent,jdbcType=VARCHAR}, #{pushStatus,jdbcType=TINYINT}, #{isActive,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.PublicPush">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.PublicPush">
     <selectKey keyProperty="publicId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -157,7 +157,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.PublicPushExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.PublicPushExample" resultType="java.lang.Long">
     select count(*) from public_push
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -201,7 +201,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.PublicPush">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.PublicPush">
     update public_push
     <set>
       <if test="pushContent != null">
@@ -222,7 +222,7 @@
     </set>
     where public_id = #{publicId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.PublicPush">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.PublicPush">
     update public_push
     set push_content = #{pushContent,jdbcType=VARCHAR},
       push_status = #{pushStatus,jdbcType=TINYINT},

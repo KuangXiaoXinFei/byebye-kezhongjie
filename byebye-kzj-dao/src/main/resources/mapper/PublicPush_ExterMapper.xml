@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.PublicPushMapper">
-  <select id="getPageList" parameterType="com.cloudyoung.baic.vo.admin.PublicPushVo" resultMap="BaseResultMap">
+<mapper namespace="com.byebye.kzj.dao.PublicPushMapper">
+  <select id="getPageList" parameterType="com.byebye.kzj.vo.admin.PublicPushVo" resultMap="BaseResultMap">
     SELECT * FROM public_push
     where is_active = 1
     <if test="minCreateTime !=null and maxCreateTime ==null">

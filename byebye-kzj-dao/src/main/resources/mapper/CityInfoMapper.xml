@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.CityInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.CityInfo">
+<mapper namespace="com.byebye.kzj.dao.CityInfoMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.CityInfo">
     <id column="city_id" jdbcType="INTEGER" property="cityId" />
     <result column="city_code" jdbcType="INTEGER" property="cityCode" />
     <result column="city_name" jdbcType="VARCHAR" property="cityName" />
@@ -74,7 +74,7 @@
     city_id, city_code, city_name, province_id, province_name, fist_char, is_active,
     create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.CityInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.CityInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -106,13 +106,13 @@
     delete from city_info
     where city_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.CityInfoExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.CityInfoExample">
     delete from city_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.CityInfo">
+  <insert id="insert" parameterType="com.byebye.kzj.model.CityInfo">
     <selectKey keyProperty="cityId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -123,7 +123,7 @@
       #{provinceName,jdbcType=VARCHAR}, #{fistChar,jdbcType=VARCHAR}, #{isActive,jdbcType=TINYINT},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.CityInfo">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.CityInfo">
     <selectKey keyProperty="cityId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -181,7 +181,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.CityInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.CityInfoExample" resultType="java.lang.Long">
     select count(*) from city_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -237,7 +237,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.CityInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.CityInfo">
     update city_info
     <set>
       <if test="cityCode != null">
@@ -267,7 +267,7 @@
     </set>
     where city_id = #{cityId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.CityInfo">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.CityInfo">
     update city_info
     set city_code = #{cityCode,jdbcType=INTEGER},
       city_name = #{cityName,jdbcType=VARCHAR},

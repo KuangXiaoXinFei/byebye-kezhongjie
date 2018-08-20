@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.UserInfoMapper">
-    <select id="getUserListByQuery" parameterType="com.cloudyoung.baic.vo.admin.UserQueryVo"
-            resultType="com.cloudyoung.baic.vo.admin.UserVo">
+<mapper namespace="com.byebye.kzj.dao.UserInfoMapper">
+    <select id="getUserListByQuery" parameterType="com.byebye.kzj.vo.admin.UserQueryVo"
+            resultType="com.byebye.kzj.vo.admin.UserVo">
         select
         t1.user_id as userId,t1.user_name AS userName,t1.sex,t1.avatar,
         t1.create_time AS createTime,t1.is_talk AS isTalk,t1.user_type AS userType,

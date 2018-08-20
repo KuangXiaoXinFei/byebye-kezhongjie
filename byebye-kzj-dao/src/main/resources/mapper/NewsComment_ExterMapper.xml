@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.NewsCommentMapper">
-    <resultMap id="NewsCommentMap" type="com.cloudyoung.baic.vo.admin.NewsCommentVo" extends="BaseResultMap">
+<mapper namespace="com.byebye.kzj.dao.NewsCommentMapper">
+    <resultMap id="NewsCommentMap" type="com.byebye.kzj.vo.admin.NewsCommentVo" extends="BaseResultMap">
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="user_name" jdbcType="INTEGER" property="userName"/>
     </resultMap>
 
-    <select id="getQueryList" resultMap="NewsCommentMap" parameterType="com.cloudyoung.baic.vo.admin.CommentQueryVo">
+    <select id="getQueryList" resultMap="NewsCommentMap" parameterType="com.byebye.kzj.vo.admin.CommentQueryVo">
         select distinct a.comment_id,a.comment_content,a.rela_comment_id,a.create_time,
         a.news_Id,b.title,a.user_id,c.user_name
         from news_comment a

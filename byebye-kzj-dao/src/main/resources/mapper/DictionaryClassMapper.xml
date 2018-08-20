@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.DictionaryClassMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.DictionaryClass">
+<mapper namespace="com.byebye.kzj.dao.DictionaryClassMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.DictionaryClass">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="dictionary_class_id" jdbcType="INTEGER" property="dictionaryClassId" />
     <result column="dictionary_class_name" jdbcType="VARCHAR" property="dictionaryClassName" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     id, dictionary_class_id, dictionary_class_name, is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.DictionaryClassExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.DictionaryClassExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,13 +102,13 @@
     delete from dictionary_class
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.DictionaryClassExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.DictionaryClassExample">
     delete from dictionary_class
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.DictionaryClass">
+  <insert id="insert" parameterType="com.byebye.kzj.model.DictionaryClass">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -119,7 +119,7 @@
       #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.DictionaryClass">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.DictionaryClass">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -159,7 +159,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.DictionaryClassExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.DictionaryClassExample" resultType="java.lang.Long">
     select count(*) from dictionary_class
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -203,7 +203,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.DictionaryClass">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.DictionaryClass">
     update dictionary_class
     <set>
       <if test="dictionaryClassId != null">
@@ -224,7 +224,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.DictionaryClass">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.DictionaryClass">
     update dictionary_class
     set dictionary_class_id = #{dictionaryClassId,jdbcType=INTEGER},
       dictionary_class_name = #{dictionaryClassName,jdbcType=VARCHAR},

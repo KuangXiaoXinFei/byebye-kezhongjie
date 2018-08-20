@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.SmsCodeInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.SmsCodeInfo">
+<mapper namespace="com.byebye.kzj.dao.SmsCodeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.SmsCodeInfo">
     <id column="sms_id" jdbcType="INTEGER" property="smsId" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="code" jdbcType="VARCHAR" property="code" />
@@ -73,7 +73,7 @@
   <sql id="Base_Column_List">
     sms_id, mobile, code, status, deadline, sms_type, is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.SmsCodeInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.SmsCodeInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -105,13 +105,13 @@
     delete from sms_code_info
     where sms_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.SmsCodeInfoExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.SmsCodeInfoExample">
     delete from sms_code_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.SmsCodeInfo">
+  <insert id="insert" parameterType="com.byebye.kzj.model.SmsCodeInfo">
     <selectKey keyProperty="smsId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -122,7 +122,7 @@
       #{deadline,jdbcType=TIMESTAMP}, #{smsType,jdbcType=TINYINT}, #{isActive,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.SmsCodeInfo">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.SmsCodeInfo">
     <selectKey keyProperty="smsId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -180,7 +180,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.SmsCodeInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.SmsCodeInfoExample" resultType="java.lang.Long">
     select count(*) from sms_code_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -236,7 +236,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.SmsCodeInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.SmsCodeInfo">
     update sms_code_info
     <set>
       <if test="mobile != null">
@@ -266,7 +266,7 @@
     </set>
     where sms_id = #{smsId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.SmsCodeInfo">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.SmsCodeInfo">
     update sms_code_info
     set mobile = #{mobile,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},

@@ -1,11 +1,11 @@
 package com.cloudyoung;
 
-import com.cloudyoung.baic.dao.NewsInfoMapper;
-import com.cloudyoung.baic.service.adminservice.AuthAccountService;
-import com.cloudyoung.baic.service.adminservice.AuthRoleService;
-import com.cloudyoung.baic.model.AuthRole;
-import com.cloudyoung.baic.vo.admin.NewsInfoVo;
-import com.cloudyoung.baic.vo.admin.ResourceVo;
+import com.byebye.kzj.dao.NewsInfoMapper;
+import com.byebye.kzj.service.adminservice.AuthAccountService;
+import com.byebye.kzj.service.adminservice.AuthRoleService;
+import com.byebye.kzj.model.AuthRole;
+import com.byebye.kzj.vo.admin.NewsInfoVo;
+import com.byebye.kzj.vo.admin.ResourceVo;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

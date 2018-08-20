@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloudyoung.baic.webapi.dao.NewsCommentMapper">
-    <resultMap id="CommentListMap" type="com.cloudyoung.baic.webapi.vo.CommentListVo" extends="BaseResultMap">
+    <resultMap id="CommentListMap" type="com.byebye.kzj.webapi.vo.CommentListVo" extends="BaseResultMap">
         <id column="comment_id" jdbcType="INTEGER" property="commentId"/>
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
         <result column="comment_content" jdbcType="VARCHAR" property="commentContent"/>

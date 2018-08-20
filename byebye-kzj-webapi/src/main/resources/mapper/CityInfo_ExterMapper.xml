@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloudyoung.baic.webapi.dao.CityInfoMapper">
     <select id="getCityList" parameterType="java.util.Map"
-            resultType="com.cloudyoung.baic.webapi.vo.CityVo">
+            resultType="com.byebye.kzj.webapi.vo.CityVo">
         select city_id AS cityId,city_code AS cityCode,city_name AS cityName,
         province_id AS provinceId,province_name AS provinceName,fist_char AS fistChar,
         0 AS cityType

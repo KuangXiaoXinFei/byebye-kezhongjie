@@ -1,9 +1,9 @@
 package com.cloudyoung.webapi;
 
 import com.alibaba.fastjson.JSON;
-import com.cloudyoung.baic.common.utils.DateUtil;
-import com.cloudyoung.baic.webapi.CloudBaicWebapiApplication;
-import com.cloudyoung.baic.webapi.intercepter.SignValidator;
+import com.byebye.kzj.common.utils.DateUtil;
+import com.byebye.kzj.webapi.CloudBaicWebapiApplication;
+import com.byebye.kzj.webapi.intercepter.SignValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

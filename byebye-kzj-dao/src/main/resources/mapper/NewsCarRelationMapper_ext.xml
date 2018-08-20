@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.NewsCarRelationMapper">
+<mapper namespace="com.byebye.kzj.dao.NewsCarRelationMapper">
 
 
     <!--根据资讯Id获取资讯的关联车系信息-->

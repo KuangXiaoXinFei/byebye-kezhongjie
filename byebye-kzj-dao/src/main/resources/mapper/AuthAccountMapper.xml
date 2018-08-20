@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.AuthAccountMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.AuthAccount">
+<mapper namespace="com.byebye.kzj.dao.AuthAccountMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.AuthAccount">
     <id column="account_id" jdbcType="INTEGER" property="accountId" />
     <result column="account_name" jdbcType="VARCHAR" property="accountName" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
@@ -76,7 +76,7 @@
     account_id, account_name, real_name, password, role_id, email, mobile, is_inital, 
     is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.AuthAccountExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.AuthAccountExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -108,13 +108,13 @@
     delete from auth_account
     where account_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.AuthAccountExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.AuthAccountExample">
     delete from auth_account
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.AuthAccount">
+  <insert id="insert" parameterType="com.byebye.kzj.model.AuthAccount">
     <selectKey keyProperty="accountId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -127,7 +127,7 @@
       #{isInital,jdbcType=TINYINT}, #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.AuthAccount">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.AuthAccount">
     <selectKey keyProperty="accountId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -197,7 +197,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.AuthAccountExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.AuthAccountExample" resultType="java.lang.Long">
     select count(*) from auth_account
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -261,7 +261,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.AuthAccount">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.AuthAccount">
     update auth_account
     <set>
       <if test="accountName != null">
@@ -297,7 +297,7 @@
     </set>
     where account_id = #{accountId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.AuthAccount">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.AuthAccount">
     update auth_account
     set account_name = #{accountName,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},

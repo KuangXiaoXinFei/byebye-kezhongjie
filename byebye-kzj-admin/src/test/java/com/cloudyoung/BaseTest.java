@@ -1,6 +1,6 @@
 package com.cloudyoung;
 
-import com.cloudyoung.baic.admin.CloudBaicAdminApplication;
+import com.byebye.kzj.admin.CloudBaicAdminApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

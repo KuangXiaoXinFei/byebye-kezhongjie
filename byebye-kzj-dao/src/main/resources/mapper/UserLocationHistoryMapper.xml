@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.UserLocationHistoryMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.UserLocationHistory">
+<mapper namespace="com.byebye.kzj.dao.UserLocationHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.UserLocationHistory">
     <id column="local_id" jdbcType="INTEGER" property="localId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="source" jdbcType="DECIMAL" property="source" />
@@ -75,7 +75,7 @@
     local_id, user_id, source, amap_longitude, amap_latitude, baidu_longitude, baidu_latitude, 
     is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.UserLocationHistoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.UserLocationHistoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -107,13 +107,13 @@
     delete from user_location_history
     where local_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.UserLocationHistoryExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.UserLocationHistoryExample">
     delete from user_location_history
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.UserLocationHistory">
+  <insert id="insert" parameterType="com.byebye.kzj.model.UserLocationHistory">
     <selectKey keyProperty="localId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -126,7 +126,7 @@
       #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.UserLocationHistory">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.UserLocationHistory">
     <selectKey keyProperty="localId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -190,7 +190,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.UserLocationHistoryExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.UserLocationHistoryExample" resultType="java.lang.Long">
     select count(*) from user_location_history
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -250,7 +250,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.UserLocationHistory">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.UserLocationHistory">
     update user_location_history
     <set>
       <if test="userId != null">
@@ -283,7 +283,7 @@
     </set>
     where local_id = #{localId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.UserLocationHistory">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.UserLocationHistory">
     update user_location_history
     set user_id = #{userId,jdbcType=INTEGER},
       source = #{source,jdbcType=DECIMAL},

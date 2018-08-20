@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloudyoung.baic.webapi.dao.PushAlertInfoMapper">
-    <resultMap id="PushAlertMap" type="com.cloudyoung.baic.webapi.vo.PushListVo">
+    <resultMap id="PushAlertMap" type="com.byebye.kzj.webapi.vo.PushListVo">
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="push_content" jdbcType="VARCHAR" property="content"/>
         <result column="type" jdbcType="INTEGER" property="type"/>

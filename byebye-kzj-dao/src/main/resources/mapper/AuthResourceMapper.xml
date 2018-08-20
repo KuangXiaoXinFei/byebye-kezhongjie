@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.AuthResourceMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.AuthResource">
+<mapper namespace="com.byebye.kzj.dao.AuthResourceMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.AuthResource">
     <id column="resource_id" jdbcType="INTEGER" property="resourceId" />
     <result column="resource_name" jdbcType="VARCHAR" property="resourceName" />
     <result column="resource_key" jdbcType="VARCHAR" property="resourceKey" />
@@ -75,7 +75,7 @@
     resource_id, resource_name, resource_key, resource_url, icon, order_num, parent_id, 
     is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.AuthResourceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.AuthResourceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -107,13 +107,13 @@
     delete from auth_resource
     where resource_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.AuthResourceExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.AuthResourceExample">
     delete from auth_resource
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.AuthResource">
+  <insert id="insert" parameterType="com.byebye.kzj.model.AuthResource">
     <selectKey keyProperty="resourceId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -126,7 +126,7 @@
       #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.AuthResource">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.AuthResource">
     <selectKey keyProperty="resourceId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -190,7 +190,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.AuthResourceExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.AuthResourceExample" resultType="java.lang.Long">
     select count(*) from auth_resource
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -250,7 +250,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.AuthResource">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.AuthResource">
     update auth_resource
     <set>
       <if test="resourceName != null">
@@ -283,7 +283,7 @@
     </set>
     where resource_id = #{resourceId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.AuthResource">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.AuthResource">
     update auth_resource
     set resource_name = #{resourceName,jdbcType=VARCHAR},
       resource_key = #{resourceKey,jdbcType=VARCHAR},

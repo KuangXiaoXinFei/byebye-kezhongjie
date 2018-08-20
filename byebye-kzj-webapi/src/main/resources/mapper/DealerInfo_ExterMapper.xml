@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloudyoung.baic.webapi.dao.DealerInfoMapper">
     <select id="getDealerListByQuery" parameterType="java.util.Map"
-            resultType="com.cloudyoung.baic.webapi.vo.DealerInfoVo">
+            resultType="com.byebye.kzj.webapi.vo.DealerInfoVo">
         SELECT 	dealer_id AS dealerId,
         dealer_code AS dealerCode,
         dealer_name AS dealerName,
@@ -31,7 +31,7 @@
         ORDER BY distance
     </select>
     <select id="getDealerListByCityId" parameterType="java.util.List"
-            resultType="com.cloudyoung.baic.webapi.vo.DealerInfoVo">
+            resultType="com.byebye.kzj.webapi.vo.DealerInfoVo">
         SELECT 	dealer_id AS dealerId,
         dealer_code AS dealerCode,
         dealer_name AS dealerName,

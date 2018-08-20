@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.PushAlertInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.PushAlertInfo">
+<mapper namespace="com.byebye.kzj.dao.PushAlertInfoMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.PushAlertInfo">
     <id column="push_id" jdbcType="INTEGER" property="pushId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="vin_code" jdbcType="VARCHAR" property="vinCode" />
@@ -77,7 +77,7 @@
     push_id, user_id, vin_code, type, level, title, push_content, occur_time, push_status, 
     is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.PushAlertInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.PushAlertInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -109,13 +109,13 @@
     delete from push_alert_info
     where push_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.PushAlertInfoExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.PushAlertInfoExample">
     delete from push_alert_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.PushAlertInfo">
+  <insert id="insert" parameterType="com.byebye.kzj.model.PushAlertInfo">
     <selectKey keyProperty="pushId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -128,7 +128,7 @@
       #{occurTime,jdbcType=TIMESTAMP}, #{pushStatus,jdbcType=TINYINT}, #{isActive,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.PushAlertInfo">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.PushAlertInfo">
     <selectKey keyProperty="pushId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -204,7 +204,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.PushAlertInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.PushAlertInfoExample" resultType="java.lang.Long">
     select count(*) from push_alert_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -272,7 +272,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.PushAlertInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.PushAlertInfo">
     update push_alert_info
     <set>
       <if test="userId != null">
@@ -311,7 +311,7 @@
     </set>
     where push_id = #{pushId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.PushAlertInfo">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.PushAlertInfo">
     update push_alert_info
     set user_id = #{userId,jdbcType=INTEGER},
       vin_code = #{vinCode,jdbcType=VARCHAR},

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloudyoung.baic.webapi.dao.CarInfoMapper">
     <select id="getStyleList" parameterType="com.cloudyoung.baic.webapi.model.CarInfoExample"
-            resultType="com.cloudyoung.baic.webapi.vo.StyleVo">
+            resultType="com.byebye.kzj.webapi.vo.StyleVo">
     SELECT
         style_id AS carId,
         style_name AS styleName,

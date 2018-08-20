@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.PushAlertInfoMapper">
-    <resultMap id="PushAlertMap" type="com.cloudyoung.baic.vo.admin.PushAlertInfoVo" extends="BaseResultMap">
+<mapper namespace="com.byebye.kzj.dao.PushAlertInfoMapper">
+    <resultMap id="PushAlertMap" type="com.byebye.kzj.vo.admin.PushAlertInfoVo" extends="BaseResultMap">
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
         <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
         <result column="level_text" jdbcType="VARCHAR" property="levelText"/>
     </resultMap>
 
-    <select id="getPageList" parameterType="com.cloudyoung.baic.vo.admin.PushAlertQueryVo"
+    <select id="getPageList" parameterType="com.byebye.kzj.vo.admin.PushAlertQueryVo"
             resultMap="PushAlertMap">
         select a.push_id,a.user_id,b.user_name,b.mobile,a.vin_code,
         (case a.level when 0 then '零部件正常'

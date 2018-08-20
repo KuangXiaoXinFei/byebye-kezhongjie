@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.DealerInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.DealerInfo">
+<mapper namespace="com.byebye.kzj.dao.DealerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.DealerInfo">
     <id column="dealer_id" jdbcType="INTEGER" property="dealerId" />
     <result column="dealer_code" jdbcType="VARCHAR" property="dealerCode" />
     <result column="dealer_name" jdbcType="VARCHAR" property="dealerName" />
@@ -83,7 +83,7 @@
     service_call, sale_call, help_call, city_id, service_longitude, service_latitude, 
     sale_longitude, sale_latitude, is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.DealerInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.DealerInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -115,13 +115,13 @@
     delete from dealer_info
     where dealer_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.DealerInfoExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.DealerInfoExample">
     delete from dealer_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.DealerInfo">
+  <insert id="insert" parameterType="com.byebye.kzj.model.DealerInfo">
     <selectKey keyProperty="dealerId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -138,7 +138,7 @@
       #{saleLatitude,jdbcType=VARCHAR}, #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.DealerInfo">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.DealerInfo">
     <selectKey keyProperty="dealerId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -244,7 +244,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.DealerInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.DealerInfoExample" resultType="java.lang.Long">
     select count(*) from dealer_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -332,7 +332,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.DealerInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.DealerInfo">
     update dealer_info
     <set>
       <if test="dealerCode != null">
@@ -386,7 +386,7 @@
     </set>
     where dealer_id = #{dealerId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.DealerInfo">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.DealerInfo">
     update dealer_info
     set dealer_code = #{dealerCode,jdbcType=VARCHAR},
       dealer_name = #{dealerName,jdbcType=VARCHAR},

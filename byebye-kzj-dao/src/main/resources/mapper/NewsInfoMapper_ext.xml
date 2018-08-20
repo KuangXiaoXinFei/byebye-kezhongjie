@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.NewsInfoMapper">
+<mapper namespace="com.byebye.kzj.dao.NewsInfoMapper">
 
-    <resultMap id="NewsInfoVoMap" type="com.cloudyoung.baic.vo.admin.NewsInfoVo" extends="BaseResultMap">
+    <resultMap id="NewsInfoVoMap" type="com.byebye.kzj.vo.admin.NewsInfoVo" extends="BaseResultMap">
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
         <result column="serial_count" jdbcType="VARCHAR" property="serialCount"/>
     </resultMap>
 
-    <resultMap id="NewsDetailVoMap" type="com.cloudyoung.baic.vo.admin.NewsDetailVo">
+    <resultMap id="NewsDetailVoMap" type="com.byebye.kzj.vo.admin.NewsDetailVo">
         <id column="news_Id" jdbcType="INTEGER" property="newsId"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="news_content" jdbcType="VARCHAR" property="newsContent"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
     </resultMap>
 
-    <select id="getNewsListByQuery" parameterType="com.cloudyoung.baic.vo.admin.NewsListQueryVo"
+    <select id="getNewsListByQuery" parameterType="com.byebye.kzj.vo.admin.NewsListQueryVo"
             resultMap="NewsInfoVoMap">
         select a.news_id,a.title,a.news_type,a.user_id,a.status,a.create_time,a.is_comment,a.source
         ,b.user_name,ifnull(c.serial_count,0)as serial_count

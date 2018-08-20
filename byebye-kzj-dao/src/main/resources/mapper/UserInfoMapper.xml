@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.UserInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.UserInfo">
+<mapper namespace="com.byebye.kzj.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.UserInfo">
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="sex" jdbcType="TINYINT" property="sex" />
@@ -81,7 +81,7 @@
     user_id, user_name, sex, avatar, mobile, push_code, open_id, is_validate, real_name, 
     id_code, user_type, is_talk, article_count, is_active, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.UserInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.UserInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -113,13 +113,13 @@
     delete from user_info
     where user_id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.UserInfoExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.UserInfoExample">
     delete from user_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.UserInfo">
+  <insert id="insert" parameterType="com.byebye.kzj.model.UserInfo">
     <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -136,7 +136,7 @@
       #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.UserInfo">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.UserInfo">
     <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -236,7 +236,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.UserInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.UserInfoExample" resultType="java.lang.Long">
     select count(*) from user_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -320,7 +320,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.UserInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.UserInfo">
     update user_info
     <set>
       <if test="userName != null">
@@ -371,7 +371,7 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.UserInfo">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.UserInfo">
     update user_info
     set user_name = #{userName,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=TINYINT},

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloudyoung.baic.webapi.dao.NewsInfoMapper">
 
-    <resultMap id="NewsListVoMap" type="com.cloudyoung.baic.webapi.vo.NewsListVo">
+    <resultMap id="NewsListVoMap" type="com.byebye.kzj.webapi.vo.NewsListVo">
         <id column="news_Id" jdbcType="INTEGER" property="newsId"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="description" jdbcType="VARCHAR" property="description"/>
@@ -16,7 +16,7 @@
         <result column="user_header" jdbcType="VARCHAR" property="userHeader"/>
     </resultMap>
 
-    <resultMap id="NewsDetailVoMap" type="com.cloudyoung.baic.webapi.vo.NewsDetailVo" extends="NewsListVoMap">
+    <resultMap id="NewsDetailVoMap" type="com.byebye.kzj.webapi.vo.NewsDetailVo" extends="NewsListVoMap">
         <result column="news_content" jdbcType="VARCHAR" property="newsContent"/>
         <result column="status" jdbcType="TINYINT" property="status" />
     </resultMap>

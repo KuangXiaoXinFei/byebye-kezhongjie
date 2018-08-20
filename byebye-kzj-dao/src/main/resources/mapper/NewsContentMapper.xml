@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloudyoung.baic.dao.NewsContentMapper">
-  <resultMap id="BaseResultMap" type="com.cloudyoung.baic.model.NewsContent">
+<mapper namespace="com.byebye.kzj.dao.NewsContentMapper">
+  <resultMap id="BaseResultMap" type="com.byebye.kzj.model.NewsContent">
     <id column="news_id" jdbcType="TINYINT" property="newsId" />
     <result column="is_active" jdbcType="TINYINT" property="isActive" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cloudyoung.baic.model.NewsContent">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.byebye.kzj.model.NewsContent">
     <result column="news_content" jdbcType="LONGVARCHAR" property="newsContent" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,7 +74,7 @@
   <sql id="Blob_Column_List">
     news_content
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.cloudyoung.baic.model.NewsContentExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.byebye.kzj.model.NewsContentExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -90,7 +90,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.cloudyoung.baic.model.NewsContentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.byebye.kzj.model.NewsContentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -124,13 +124,13 @@
     delete from news_content
     where news_id = #{id,jdbcType=TINYINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cloudyoung.baic.model.NewsContentExample">
+  <delete id="deleteByExample" parameterType="com.byebye.kzj.model.NewsContentExample">
     delete from news_content
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cloudyoung.baic.model.NewsContent">
+  <insert id="insert" parameterType="com.byebye.kzj.model.NewsContent">
     <selectKey keyProperty="newsId" order="AFTER" resultType="Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -139,7 +139,7 @@
     values (#{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{newsContent,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cloudyoung.baic.model.NewsContent">
+  <insert id="insertSelective" parameterType="com.byebye.kzj.model.NewsContent">
     <selectKey keyProperty="newsId" order="AFTER" resultType="Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -173,7 +173,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cloudyoung.baic.model.NewsContentExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.byebye.kzj.model.NewsContentExample" resultType="java.lang.Long">
     select count(*) from news_content
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -223,7 +223,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloudyoung.baic.model.NewsContent">
+  <update id="updateByPrimaryKeySelective" parameterType="com.byebye.kzj.model.NewsContent">
     update news_content
     <set>
       <if test="isActive != null">
@@ -241,7 +241,7 @@
     </set>
     where news_id = #{newsId,jdbcType=TINYINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cloudyoung.baic.model.NewsContent">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.byebye.kzj.model.NewsContent">
     update news_content
     set is_active = #{isActive,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -249,7 +249,7 @@
       news_content = #{newsContent,jdbcType=LONGVARCHAR}
     where news_id = #{newsId,jdbcType=TINYINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloudyoung.baic.model.NewsContent">
+  <update id="updateByPrimaryKey" parameterType="com.byebye.kzj.model.NewsContent">
     update news_content
     set is_active = #{isActive,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
